@@ -5,12 +5,26 @@ namespace App;
 use App\User;
 use App\Reply;
 use App\Channel;
+use App\Events\DiscussionCreated;
+use App\Events\DiscussionDeleted;
+use App\Events\DiscussionUpdated;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\MarkBestReplyNotification;
 
 class Discussion extends Model
 {
     protected $fillable = ['title', 'content', 'channel_id', 'slug', 'reply_id'];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => DiscussionCreated::class,
+        'updated' => DiscussionUpdated::class,
+        'deleted' => DiscussionDeleted::class,
+    ];
 
     public function author()
     {

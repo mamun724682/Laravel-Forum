@@ -1,5 +1,7 @@
 <?php
 
+use Pusher\Pusher;
+use App\Events\DiscussionCreated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Auth::routes(['verify' => true]);
@@ -29,3 +31,4 @@ Route::get('users/notifications', 'UserController@notifications')->name('users.n
 
 Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('login.github');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+

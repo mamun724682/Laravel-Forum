@@ -3,8 +3,9 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
-use Faker\Generator as Faker;
+use App\Discussion;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,15 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
+    ];
+});
+
+$factory->define(Discussion::class, function (Faker $faker) {
+    return [
+        'user_id' => 1,
+        'channel_id' => rand(1, 4),
+        'title' => $faker->sentence(),
+        'content' => $faker->paragraph(),
+        'slug' => Str::slug($faker->sentence()),
     ];
 });

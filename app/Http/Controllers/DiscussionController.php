@@ -21,8 +21,13 @@ class DiscussionController extends Controller
      */
     public function index()
     {
-        // dd(request()->channel);
-        return view('discussion.index', ['discussions' => Discussion::filterByChannels()->paginate(3)]);
+        $discussions = cache('discussions', function()
+        {
+            return Discussion::with('author')->filterByChannels()->paginate(100);
+        });
+        // $discussions =Discussion::with('author')->filterByChannels()->paginate(100);
+
+        return view('discussion.index', compact('discussions'));
     }
 
     /**
@@ -63,6 +68,7 @@ class DiscussionController extends Controller
      */
     public function show(Discussion $discussion)
     {
+        // $discussion = Discussion::with('repli')->find($id);
         return view('discussion.show', compact('discussion'));
     }
 

@@ -94,19 +94,19 @@
                     @endauth
                     <div class="card">
                         <div class="card-header text-center">
-                        <strong>Channels</strong>
-                    </div>
-                    <div class="card-body">
-                        @foreach ($channels as $channel)
-                        <li class="list-group-item">
-                           <a href="{{ route('discussion.index') }}?channel={{ $channel->slug }}">{{ $channel->name }}</a>
-                       </li>
-                       @endforeach
-                   </div>
-                    </div>
-               </ul>
-           </div>
-           <div class="col-md-8">
+                            <strong>Channels</strong>
+                        </div>
+                        <div class="card-body">
+                            @foreach ($channels as $channel)
+                            <li class="list-group-item">
+                             <a href="{{ route('discussion.index') }}?channel={{ $channel->slug }}">{{ $channel->name }}</a>
+                         </li>
+                         @endforeach
+                     </div>
+                 </div>
+             </ul>
+         </div>
+         <div class="col-md-8">
             @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -125,6 +125,12 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    Echo.channel('discussion.created')
+    .listen('DiscussionCreated', (e) => {
+        $.notify(e.discussion.title + " has been published now!");
+    });
+</script>
 @yield('script')
 
 </body>
