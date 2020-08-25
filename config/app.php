@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Laravel Forum'),
 
     /*
     |--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:A7LTBcx+bqjMV58qOQDK7NCwQX76tFEvgi8SWs6fDzE='),
 
     'cipher' => 'AES-256-CBC',
 
